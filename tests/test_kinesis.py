@@ -1,0 +1,2 @@
+import pytest
+from src.kinesis_task_4 import write_quote_record_to_stream, get_quotes_from_stream
