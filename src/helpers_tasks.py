@@ -13,9 +13,10 @@ def get_quote(url: str = URL):
       (optional) url: the URL of the API. Default value provided.
 
     Returns:
-      (On success) a tuple consisting of the HTTP status code and a dict containing the
-      content, author and length of the quote as keys.
-      (On failure) a tuple with the status code and a dict containing the status message.
+      (On success) a tuple consisting of the HTTP status code and a dict
+      containing the content, author and length of the quote as keys.
+      (On failure) a tuple with the status code and a dict containing the
+      status message.
     """
     try:
         response = requests.get(url)
@@ -31,14 +32,16 @@ def get_quote(url: str = URL):
 def get_parameter(parameter_name: str, **kwargs):
     """Gets a parameter from AWS Systems Manager Parameter Store.
 
-    Finds the given parameter name in the Parameter store and returns the value.
+    Finds the given parameter name in the Parameter store and returns the
+    value.
 
     Args:
       parameter_name: the unique name of the parameter.
       (optional) kwargs
 
     Returns:
-      A string with the required parameter value or an informative error message.
+      A string with the required parameter value or an informative error
+      message.
 
     """
     # implement me

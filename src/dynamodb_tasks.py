@@ -1,4 +1,4 @@
-from src.helpers_task_1 import get_parameter, get_quote
+from src.helpers_tasks import get_parameter, get_quote
 
 
 PARAMETER_NAME = "/temp/sprint/dynamodb/table_name"
@@ -9,11 +9,12 @@ def put_quote_in_db(table_name: str, quote: dict, **kwargs):
     """Writes a record of a quote to a given DynamoDB table.
 
     Given the name of a properly-configured DynamoDB table, writes the author
-    and quote to the table along with a unique ID in case an author has several quotes.
+    and quote to the table along with a unique ID in case an author has
+    several quotes.
 
     The record format is Author (string), QuoteId (string), Content (string).
-    The Author and Content are provided in the input quote object. The QuoteId must be
-    generated within the function.
+    The Author and Content are provided in the input quote object. The QuoteId
+    must be generated within the function.
 
     Args:
       table_name: name of the DynamoDB table.
@@ -28,10 +29,11 @@ def put_quote_in_db(table_name: str, quote: dict, **kwargs):
 
 
 def get_quotes_by_author_from_db(table_name, author, **kwargs):
-    """Retrieves all records of quotes by a given author from the DynamoDB table.
+    """
+    Retrieves all records of quotes by a given author from the DynamoDB table.
 
-    Given the name of a properly-configured DynamoDB table, retrieves all quotes
-    by the author to a stringified list.
+    Given the name of a properly-configured DynamoDB table, retrieves all
+    quotes by the author to a stringified list.
 
     Args:
       table_name: name of the DynamoDB table.
