@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "nc-de-terraform-state-store"
+    bucket = "REMOTE_BUCKET_NAME_HERE"
     key = "de-quote-pipe/terraform.tfstate"
     region = "eu-west-2"
   }

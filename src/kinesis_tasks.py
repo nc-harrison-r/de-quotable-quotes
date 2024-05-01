@@ -1,12 +1,15 @@
-from src.helpers_task_1 import get_quote, get_parameter
+from src.helpers_tasks import get_quote, get_parameter
 
 STREAM_NAME = get_parameter("/temp/sprint/kinesis/stream_name")
 
 
-def write_quote_record_to_stream(quote: dict, stream_name: str = STREAM_NAME, **kwargs):
+def write_quote_record_to_stream(
+  quote: dict, stream_name: str = STREAM_NAME, **kwargs
+):
     """Writes a quote to a stream.
 
-    Given a stream name and a quote, writes the quote to the stream, serialised as JSON.
+    Given a stream name and a quote, writes the quote to the stream,
+    serialised as JSON.
 
     Args:
       quote: a quote in the format produced by the get_quote helper function.

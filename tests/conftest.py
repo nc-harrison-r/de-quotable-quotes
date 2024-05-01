@@ -1,8 +1,4 @@
 import pytest
-from moto import mock_aws
-import os
-import boto3
-import json
 
 
 @pytest.fixture(scope="module")

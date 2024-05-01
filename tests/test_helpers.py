@@ -1,7 +1,7 @@
 import pytest
 from requests import Response
 from unittest.mock import Mock, patch
-from src.helpers_task_1 import get_quote, URL, get_parameter
+from src.helpers_tasks import get_quote, URL, get_parameter
 
 
 class TestGetQuote:

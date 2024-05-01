@@ -1,2 +1,1 @@
-import pytest
-from src.dynamodb_task_3 import put_quote_in_db
+from src.dynamodb_tasks import put_quote_in_db, get_quotes_by_author_from_db
