@@ -8,7 +8,6 @@ class TestGetQuote:
 
     @pytest.mark.it("unit test: get_quote returns correctly formatted dict")
     def test_get_quote_dict(self, sample_quote_list, result_quote_1):
-        # mock_response = Mock(spec=Response, status_code=200)
         with patch("src.helpers_tasks.random.choice") as mock_choice:
             mock_choice.return_value = sample_quote_list[0]
             assert get_quote() == (200, result_quote_1)
