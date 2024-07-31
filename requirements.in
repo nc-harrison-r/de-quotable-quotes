@@ -3,4 +3,3 @@ pytest-cov
 pytest-testdox
 moto[s3]
 boto3
-requests
