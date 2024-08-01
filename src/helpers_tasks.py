@@ -1,32 +1,26 @@
-import requests
+import random
+from data.quotes import quote_list
 
-URL = "https://api.quotable.io/quotes/random"
 
+def get_quote():
+    """Function mimicking a call to an external quotes API.
 
-def get_quote(url: str = URL):
-    """Gets quote from external API.
-
-    Calls the quotable.io API for a random quote, retrieving both the
-    author and the text of the quote.
-
-    Args:
-      (optional) url: the URL of the API. Default value provided.
+    Requests a random quote, retrieving both the author and the text of the
+    quote.
 
     Returns:
-      (On success) a tuple consisting of the HTTP status code and a dict
+      (On success) a tuple consisting of a HTTP status code and a dict
       containing the content, author and length of the quote as keys.
-      (On failure) a tuple with the status code and a dict containing the
+      (On failure) a tuple with a status code and a dict containing the
       status message.
     """
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        raw = response.json()
+        quote = random.choice(quote_list)
         required = ["content", "author", "length"]
-        return (response.status_code, {k: raw[0][k] for k in required})
-    except requests.HTTPError:
-        formatted = {"status_message": response.json()["statusMessage"]}
-        return (response.status_code, formatted)
+        return (200, {k: quote[k] for k in required})
+    except Exception as e:
+        formatted = {"status_message": f"Unexpected error: {e}"}
+        return (500, formatted)
 
 
 def get_parameter(parameter_name: str, **kwargs):
