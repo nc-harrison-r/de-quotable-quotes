@@ -23,13 +23,14 @@ def get_quote():
         return (500, formatted)
 
 
-def get_parameter(parameter_name: str, **kwargs):
+def get_parameter(ssm_client, parameter_name, **kwargs):
     """Gets a parameter from AWS Systems Manager Parameter Store.
 
     Finds the given parameter name in the Parameter store and returns the
     value.
 
     Args:
+      ssm_client (boto3.client): the boto3 client to interact with the AWS API.
       parameter_name: the unique name of the parameter.
       (optional) kwargs
 
