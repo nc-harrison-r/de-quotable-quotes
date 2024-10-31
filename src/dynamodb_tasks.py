@@ -5,7 +5,7 @@ from src.helpers_tasks import get_parameter, get_quote
 PARAMETER_NAME = "/temp/sprint/dynamodb/table_name"
 
 
-def put_quote_in_db(client, table_name, quote, **kwargs):
+def put_quote_in_db(ddb_client, table_name, quote, **kwargs):
     """Writes a record of a quote to a given DynamoDB table.
 
     Given the name of a properly-configured DynamoDB table, writes the author
@@ -17,7 +17,7 @@ def put_quote_in_db(client, table_name, quote, **kwargs):
     must be generated within the function.
 
     Args:
-      client: a boto3 client for DynamoDB.
+      ddb_client: a boto3 client for DynamoDB.
       table_name: name of the DynamoDB table.
       quote: a quote object generated from the get_quote helper function.
       (optional) kwargs
@@ -54,9 +54,14 @@ if __name__ == "__main__":
     PARAMETER_NAME = "/temp/sprint/dynamodb/table_name"
     TABLE_NAME = get_parameter(ssm_client, PARAMETER_NAME)
     status, quote = get_quote()
+    print(f"==>> quote: {quote}")
     if status == 200:
         d_db_client = client("dynamodb")
         msg1 = put_quote_in_db(d_db_client, TABLE_NAME, quote)
         print(msg1)
+        quotes_by_author = get_quotes_by_author_from_db(
+            d_db_client, TABLE_NAME, quote["author"]
+        )
+        print(quotes_by_author)
     else:
         print(quote["status_message"])
