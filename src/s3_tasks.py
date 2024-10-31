@@ -31,7 +31,7 @@ def read_file_from_s3(s3_client, bucket_name, object_key, destination, **kwargs)
     Given a bucket name and key, reads the file to the given local destination.
 
     Args:
-      client: a boto3 client to interact with the AWS API.
+      s3_client: a boto3 client to interact with the AWS API.
       bucket_name: name of the bucket to read from.
       object_key: key of the object within the bucket.
       destination: a local file path, either absolute or relative to the root of this repository.
