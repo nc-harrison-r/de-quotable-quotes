@@ -2,6 +2,10 @@ import random
 from data.quotes import quote_list
 
 
+class NotAnSSMClientError(ValueError):
+    pass
+
+
 def get_quote():
     """Function mimicking a call to an external quotes API.
 
@@ -40,4 +44,9 @@ def get_parameter(ssm_client, parameter_name, **kwargs):
 
     """
     # implement me
-    pass
+    try:
+        return ssm_client.get_parameter(Name=parameter_name)["Parameter"]["Value"]
+    except AttributeError:
+        raise NotAnSSMClientError
+    except ssm_client.exceptions.ParameterNotFound:
+        raise KeyError

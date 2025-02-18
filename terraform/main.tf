@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "REMOTE_BUCKET_NAME_HERE"
+    bucket = "quotes-tf-bucket"
     key = "de-quote-pipe/terraform.tfstate"
     region = "eu-west-2"
   }

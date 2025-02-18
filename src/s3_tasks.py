@@ -1,3 +1,4 @@
+from botocore.exceptions import ClientError
 from boto3 import client
 from src.helpers_tasks import get_parameter
 
@@ -22,7 +23,15 @@ def write_file_to_s3(s3_client, path_to_file, bucket_name, object_key, **kwargs)
 
     """
     # implement me
-    pass
+    try:
+        with open(path_to_file) as f:
+            file_contents = "".join(line for line in f)
+            s3_client.put_object(Bucket=bucket_name, Key=object_key, Body=file_contents)
+        return "Successfully added file to bucket"
+    except ClientError as c:
+        return f"Client Error: {c}"
+    except Exception:
+        raise
 
 
 def read_file_from_s3(s3_client, bucket_name, object_key, destination, **kwargs):
